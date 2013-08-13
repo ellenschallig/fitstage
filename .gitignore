@@ -1,0 +1,14 @@
+*.aux
+*.pdf
+*.xml
+*.gz
+*.bbl
+*.blg
+*~
+*.log
+*.dvi
+*.out
+*.backup
+.DS_Store
+
+report-blx.bib

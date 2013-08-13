@@ -1,0 +1,35 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{inputenc}
+\usepackage{textcomp}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage[parfill]{parskip}
+\usepackage{graphicx, subfig}
+\usepackage{listings}
+\lstset{language=Python, breaklines=true}   
+
+%\usepackage{natbib}
+\usepackage[style=numeric,natbib=true,sortcites=true,block=space]{biblatex}
+\bibliography{bibliography}
+
+\title{A Step-Integrate Program for the CRIMI}
+%\subtitle{, the Vacuum Fourier Transform Spectrometer}
+\author{Ellen Schallig}
+
+\begin{document}
+ 
+\maketitle
+
+ \begin{abstract}
+ Abstract follows.
+ \end{abstract}
+
+\input{introduction}
+\input{stepintegrate}
+\input{gui}
+\input{fastscan}
+\input{codedescription}
+
+\printbibliography
+
+\end{document}
