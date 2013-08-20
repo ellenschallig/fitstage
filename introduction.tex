@@ -10,9 +10,20 @@ The goal of this internship was to write software to guide the linear stage in t
 %grafische user interface
 %data processing (FFT algorithmes + windowing)
 %Zet in deze introductie ook een formule en plaatje met spectrum en interferogram.
-%Verder is het goed om hier ook aan te geven hoe padlengte de resolutie bepaalt, en minimale stapgrootte de hoogste frequentie.
+\textbf{Verder is het goed om hier ook aan te geven hoe padlengte de resolutie bepaalt, en minimale stapgrootte de hoogste frequentie.}
 
 \subsection{Fourier Transform}
+
+Fourier transform spectrometers (FTS) work on the interference and Fourier principles. The spectrometer has a moveable part and stationary parts. In the case of figure~\ref{fig:fts}, a moving mirror provides a difference in distance travelled by the two beams of light created by the beamsplitter. By moving one mirror, the path length $l_1$ is made different from $l_2$, which produces an interference pattern when the light is recombined. Because of the range of wavelengths in the light, at different positions of the mirror, different wavelengths are attenuated.
+
+With a Fourier transform the intensity for each position ($\delta$) is turned into the intensity for each wavenumber ($\tilde{\nu}$), because one is the inverse of the other: $\tilde{\nu} = \frac{1}{\delta}$, and from this the frequency $f$ can be computed: $\tilde{\nu}\cdot c=f$. $\delta$ and $\nu$ are together called a Fourier transform pair.
+
+The Fourier transform of a function is the following formula:
+
+\[
+ F(\tilde{\nu})=\int_{-\infty}^{\infty}f(t)e^{-i\omega t}dt
+\]
+with $i$ the unit imaginary number.
 
 \begin{figure}
  \begin{center}
@@ -28,23 +39,17 @@ The goal of this internship was to write software to guide the linear stage in t
  \item To be more specific, between the light source and the detector, there is a certain configuration of mirrors that allows some wavelengths to pass through but blocks others (due to wave interference). The beam is modified for each new data point by moving one of the mirrors; this changes the set of wavelengths that can pass through.
 As mentioned, computer processing is required to turn the raw data (light intensity for each mirror position) into the desired result (light intensity for each wavelength). The processing required turns out to be a common algorithm called the Fourier transform (hence the name, "Fourier transform spectroscopy"). The raw data is sometimes called an "interferogram". \textbf{Copypasta van wikipedia, AANPASSEN}
  \item Fourier transform $\rightarrow$ padlengte bepaalt resolutie, minimale stapgrootte de hoogste frequentie
+
 \end{itemize}
-
-
-A Fourier transform spectrometer (FTS) works on the interference and Fourier principles. A moving beam-splitting mirror provides a difference in distance travelled by the two beams of light, which gives an interference pattern when recombined. See also figure \ref{fig:fts}. The spectrometer setup measures the intensity of the combined signal as a function of position. A simple Fourier transform gets from this position data the intensity per wavenumber. The distance ($\delta$) and wavenumber ($\tilde{\nu}$) are together called a Fourier transform pair, because one is the inverse of the other:
-
-\[
- \tilde{\nu} = \frac{1}{\delta},
-\]
-
-and from this the frequency $f$ can be computed: $\tilde{\nu}\cdot c=f$.
 
 
 
 \begin{figure}
  \begin{center}
-  \includegraphics[width=0.8\textwidth]{figures/randomfouriertransform.png}
-  \caption{The Fourier transform of an interferogram gives the spectrum. From \cite{ucdavis}.}
+  \subfloat[The measured interferogram.]{\includegraphics[width = 0.47\textwidth]{figures/interferogramforreport.png}}
+  \quad
+  \subfloat[The spectrum.]{\includegraphics[width = 0.47\textwidth]{figures/fourierplotforreport.png}}
+  \caption{The Fourier transform of an interferogram gives the spectrum.}
   \label{fig:fouriertransform}
  \end{center}
 \end{figure}
@@ -53,7 +58,7 @@ and from this the frequency $f$ can be computed: $\tilde{\nu}\cdot c=f$.
 %\item Algemene inleiding over de CRIMI. (sortof done)
 \item Iets met dat het programma voor windows geschreven is (serial ports zijn com-ports).
 %z\item dingen over waarom een fts gebruiken (fourier $\rightarrow$ dus informatie over meerdere frequenties in 1x).
-\item \textbf{check measurement 20121005-1725!}
+%\item \textbf{check measurement 20121005-1725!}
 %\item something about the lock in technique? Nope, niet relevant voor programma.
 \end{itemize}
 
