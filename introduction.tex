@@ -10,20 +10,11 @@ The goal of this internship was to write software to guide the linear stage in t
 %grafische user interface
 %data processing (FFT algorithmes + windowing)
 %Zet in deze introductie ook een formule en plaatje met spectrum en interferogram.
-\textbf{Verder is het goed om hier ook aan te geven hoe padlengte de resolutie bepaalt, en minimale stapgrootte de hoogste frequentie.}
+%\textbf{Verder is het goed om hier ook aan te geven hoe padlengte de resolutie bepaalt, en minimale stapgrootte de hoogste frequentie.}
 
 \subsection{Fourier Transform}
 
-Fourier transform spectrometers (FTS) work on the interference and Fourier principles. The spectrometer has a moveable part and stationary parts. In the case of figure~\ref{fig:fts}, a moving mirror provides a difference in distance travelled by the two beams of light created by the beamsplitter. By moving one mirror, the path length $l_1$ is made different from $l_2$, which produces an interference pattern when the light is recombined. Because of the range of wavelengths in the light, at different positions of the mirror, different wavelengths are attenuated.
-
-With a Fourier transform the intensity for each position ($\delta$) is turned into the intensity for each wavenumber ($\tilde{\nu}$), because one is the inverse of the other: $\tilde{\nu} = \frac{1}{\delta}$, and from this the frequency $f$ can be computed: $\tilde{\nu}\cdot c=f$. $\delta$ and $\nu$ are together called a Fourier transform pair.
-
-The Fourier transform of a function is the following formula:
-
-\[
- F(\tilde{\nu})=\int_{-\infty}^{\infty}f(t)e^{-i\omega t}dt
-\]
-with $i$ the unit imaginary number.
+Fourier transform spectrometers (FTS) work on the interference and Fourier principles. The spectrometer has a moveable part and stationary parts. In the case of figure~\ref{fig:fts}, a moving mirror provides a difference in distance travelled by the two beams of light created by the beamsplitter. By moving one mirror, the path length $l_1$ is made different from $l_2$, which produces an interference pattern when the light is recombined. This pattern is a cosine wave for each wavelength. Because of the range of wavelengths in the source, at different positions of the mirror, different wavelengths are attenuated.
 
 \begin{figure}
  \begin{center}
@@ -33,16 +24,23 @@ with $i$ the unit imaginary number.
  \end{center}
 \end{figure}
 
-\textbf{Zeg dingen over:}
-\begin{itemize}
- \item Coherence of a light source
- \item To be more specific, between the light source and the detector, there is a certain configuration of mirrors that allows some wavelengths to pass through but blocks others (due to wave interference). The beam is modified for each new data point by moving one of the mirrors; this changes the set of wavelengths that can pass through.
-As mentioned, computer processing is required to turn the raw data (light intensity for each mirror position) into the desired result (light intensity for each wavelength). The processing required turns out to be a common algorithm called the Fourier transform (hence the name, "Fourier transform spectroscopy"). The raw data is sometimes called an "interferogram". \textbf{Copypasta van wikipedia, AANPASSEN}
- \item Fourier transform $\rightarrow$ padlengte bepaalt resolutie, minimale stapgrootte de hoogste frequentie
 
-\end{itemize}
+With a Fourier transform the intensity for each position ($\delta$) is turned into the intensity for each wavenumber ($\tilde{\nu}$), because one is the inverse of the other: $\tilde{\nu} = \frac{1}{\delta}$, and from this the frequency $f$ can be computed: $\tilde{\nu}\cdot c=f$. $\delta$ and $\nu$ are together called a Fourier transform pair.
 
+The Fourier transform of a function is the following formula:
 
+\[
+ F(\omega)=\int_{-\infty}^{\infty}f(t)e^{-i\omega t}dt,
+\]
+with $i$ the unit imaginary number. However because all wavelengths produce cosine waves, the total input is just a summation of cosines. Also we talk about position and wavenumber, so in this case the Fourier transform can be simplified to
+
+\[
+ F(\tilde{\nu}) = \int_{-\infty}^{\infty}f(\delta)\cos(2\pi\delta\tilde{\nu})d\delta,
+\]
+
+with $F(\tilde{\nu})$ the power of the source as a function of wavenumber or frequency, and $f(\delta)$ the power as a function of path length difference.
+
+Because of this Fourier transform and $\tilde{\nu} = \frac{1}{\delta}$, a longer path length for the measurement causes a higher resolution, and a smaller stepsize gives a higher highest frequency.
 
 \begin{figure}
  \begin{center}
@@ -53,14 +51,6 @@ As mentioned, computer processing is required to turn the raw data (light intens
   \label{fig:fouriertransform}
  \end{center}
 \end{figure}
-
-\begin{itemize}
-%\item Algemene inleiding over de CRIMI. (sortof done)
-\item Iets met dat het programma voor windows geschreven is (serial ports zijn com-ports).
-%z\item dingen over waarom een fts gebruiken (fourier $\rightarrow$ dus informatie over meerdere frequenties in 1x).
-%\item \textbf{check measurement 20121005-1725!}
-%\item something about the lock in technique? Nope, niet relevant voor programma.
-\end{itemize}
 
 \subsection{Hardware}
 
@@ -83,7 +73,7 @@ The test setup used a helium-cooled bolometer to actually measure the power of t
 
 It is important to mention that on the SR510 the DIP-switches need to be in a different configuration than the `example' configuration as mentioned in its manual on page 7. For fast readout, SW1 switch 6 should be in the `up' position instead of in the `down' position, to suppress echoing over the RS232 connection (which is unconnected in this setup). The SW2 switches are not of importance in this setup, as no RS232 connection is used. See figure~\ref{fig:SR510_back} for the location of this switch.
 
-\begin{figure}
+\begin{figure}[h!tb]
  \begin{center}
   \includegraphics[width=\textwidth]{figures/SR510_Rear_circle.jpg}
   \caption{The back plate of the SR510 lock in amplifier. Encircled is SW1 switch 6. For fast performance, this switch should be in the `up' position. Picture from \cite{SR}.}
@@ -91,6 +81,8 @@ It is important to mention that on the SR510 the DIP-switches need to be in a di
  \end{center}
 \end{figure}
 
+
+The software is written for Windows, because almost all the computers at SRON make use of Windows. This is hardcoded, because only the COM-ports (serial ports) are coded in.
 
 \subsection{Python}
 Python is an interpreted, interactive, object-oriented programming language \cite{python}. It is open source and free, and easy to learn. Python runs on Windows, Linux/Unix and Mac OS X. It has an active community that contributes a large number of libraries for various tasks, e.g. numerical mathematics and hardware interfacing.
