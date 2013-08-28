@@ -60,6 +60,12 @@ The zero bias point is experimentally found to be at a distance of 25.17 cm from
 
 \subsubsection{Starting and Saving the Measurement}\label{subsub:saving}
 
+In the last frame, figure~\ref{fig:gui4}, the measurement can be started by pressing the `Start' button. In this frame two plots are updated continually: the interferogram as measured in the upper window, and the Fourier transform with a Hann apodization function in the lower window. These can be used to track the progress of the measurement. If necessary, the measurement can be stopped by pressing the `Abort' button.
+
+In the grey band under every frame the status is given. This can be `No measurement', `Measurement started', or 'Measurement aborting'. After a succesful measurement, the status will go automatically from `Measurement started' to `No measurement'.
+
+Saving is done by pressing the `Save' button. All files are saved with the exact time and date from when the measurement was started in the name; this prevents the possibility of overwriting earlier measurements.
+
 \begin{figure}[!ht]
  \begin{center}
   \includegraphics[width=0.8\textwidth]{figures/gui4}
