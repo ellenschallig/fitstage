@@ -1,13 +1,28 @@
 %%%%%%%%% Further Work %%%%%%%%%
 
 \section{Possible Improvements}
-\begin{itemize}
-\item inhoudelijk: fast scan. wat heb ik tot nu toe gedaan, en waar wil ik heen. Was toch wel lastig.
-\item in de code: in het gui-gedeelte: het plotten uitdrukken in de plotmethodes die ik gemaakt heb, ipv dat stukje code `opnieuw' uit te werken.
-\item in de code: tests toevoegen om alle mogelijke manieren van afronden (bijv) te kunnen controleren en dus zeker weten dat dat stukje code doet wat je wilt dat het doet.
-\item check in de code of de plaatjes eenheden op de assen meekrijgen. anders is dat een fantastische improvement. (check dat doet het)
-\item nog meer de GUI loskoppelen van het data verwerken, vooral in het opslaangedeelte. Dat had een aparte klasse moeten worden.
-\end{itemize}
+
+I have created a working program for the CRIMI that takes measurements with the step-integrate method. This introduces waiting time, which can add up to hours for a precise measurement. To facilitate these kinds of measurements, a fast scan method could be implemented.
+
+\subsection{Fast Scan}
+Ideally with the fast scan method the linear stage moves between two specified end points and sends out a trigger pulse when a measurement should be made. At that moment it knows its position and this is sent to the computer, along with the voltage reading from the read-out device. In this way the same amount of data points can be acquired in much less time than is needed for the step integrate method. Even though this data is less precise, with these many more data points it does not matter much.
+
+I started working on this, but have not yet managed to synchronize the stage and the read-out device, which is essential to make this method work. In this setup the read-out device was the Agilent 34401A multimeter. The controller for the stage can send these trigger pulses, but the multimeter side does not yet react to these pulses.
+
+\subsection{Improvements to Code}
+Even though the step-integrate program works, this does not mean that the code is perfect. In the class for the GUI (\verb!Frame1!) a few too many lines which should be in a new class slipped in. Especially where the different data files are saved, the GUI code and processing code are too much mingled. This saving process should be completely separated from the GUI.
+
+In the same way in the GUI code the plotting during the measurement is done with different code than the plotting that is done during saving. This could be cleaned up by refactoring this part of the code.
+
+In the \verb!Parameters! class some parameters are converted into different parameters. I tested the correctness by hand for the edge cases I could think of, but it would be better to write a unit test that can do this every time a small change is made in the code. 
+
+
+%\begin{itemize}
+%\item inhoudelijk: fast scan. wat heb ik tot nu toe gedaan, en waar wil ik heen. Was toch wel lastig.
+%\item in de code: in het gui-gedeelte: het plotten uitdrukken in de plotmethodes die ik gemaakt heb, ipv dat stukje code `opnieuw' uit te werken.
+%\item in de code: tests toevoegen om alle mogelijke manieren van afronden (bijv) te kunnen controleren en dus zeker weten dat dat stukje code doet wat je wilt dat het doet.
+%\item nog meer de GUI loskoppelen van het data verwerken, vooral in het opslaangedeelte. Dat had een aparte klasse moeten worden.
+%\end{itemize}
 
 %14:03 <marten> of alleen al iets wat dan specifiek "acceptatietest" heet: sluit 
 %               alles aan, op een bepaalde (simpelste) configuratie (bijv niet 

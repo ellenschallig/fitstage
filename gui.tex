@@ -1,9 +1,7 @@
 %%%%%%%%% NEW SECTION: GRAPHICAL USER INTERFACE %%%%%%%%%
 
 \section{Graphical User Interface}
-\begin{itemize}
- \item grafische user interface! wx, wx-python, wat gebeurt er in de code van de interface en hoeveel is het door elkaar gegaan met het programma zelf? wat zit er in de interface verwerkt, wat kan het programma doen?
-\end{itemize}
+The graphical user interface, or GUI, is the part of the program where the user interacts with the software. \verb!wxPython! and \verb!wxFormbuilder! were used to make the GUI. In it the user can define the requirements for the measurement and the program will then compute the scan length and stepsize which are needed to meet the requirements.
 
 \subsection{Walkthrough}
 
@@ -21,7 +19,7 @@ To start the program, click the icon or in the command window go to the correct 
 
 Figure \ref{fig:gui1} shows the welcome screen with a short explanation on how to use this program. For the longer explanation, please read on.
 
-\subsubsection{Setting the SR510 Lock In Amplifier}
+\subsubsection{Setting the SR510 Lock In Amplifier}\label{subsub:lockin}
 
 \begin{figure}[!ht]
  \begin{center}
@@ -62,9 +60,9 @@ The zero bias point is experimentally found to be at a distance of 25.17 cm from
 
 In the last frame, figure~\ref{fig:gui4}, the measurement can be started by pressing the `Start' button. In this frame two plots are updated continually: the interferogram as measured in the upper window, and the Fourier transform with a Hann apodization function in the lower window. These can be used to track the progress of the measurement. If necessary, the measurement can be stopped by pressing the `Abort' button.
 
-In the grey band under every frame the status is given. This can be `No measurement', `Measurement started', or 'Measurement aborting'. After a succesful measurement, the status will go automatically from `Measurement started' to `No measurement'.
+In the grey band under every frame the status is given. The possibilities are `No measurement', `Measurement started', 'Measurement aborted', or `Measurement finished'. After a succesful measurement, the status will stay at `Measurement finished', and a new measurement can be started.
 
-Saving is done by pressing the `Save' button. All files are saved with the exact time and date from when the measurement was started in the name; this prevents the possibility of overwriting earlier measurements.
+Saving is done by pressing the `Save' button. All files are saved with the exact time and date from when the measurement was started in the name; this prevents the possibility of overwriting earlier measurements. Three plots are saved as \verb!png!: the original interferogram, the Fourier transformed data without a windowing function and the Fourier transformed data with a Hann apodization function. These data points are also saved in two \verb!csv! files, one with the original data, and one with the transformed data. Lastly a textfile with the parameters used in the measurement is saved.
 
 \begin{figure}[!ht]
  \begin{center}
@@ -73,8 +71,3 @@ Saving is done by pressing the `Save' button. All files are saved with the exact
   \label{fig:gui4}
  \end{center}
 \end{figure}
-
-\subsubsection{Examples}
-\begin{itemize}
- \item Hier voorbeelden van wat er uit zo'n measurement komt, wat je kunt opslaan.
-\end{itemize}

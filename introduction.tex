@@ -3,7 +3,7 @@
 \section{Introduction}
 The CRIMI (ChRIs $\&$ MIchelson) is an infrared Fourier transform spectrometer, made by Chris de Jonge, under supervision of Dr. Andrey Baryshev. The spectrometer is designed to be used in a vacuum, as water molecules and other abundant molecules in the atmosphere absorb large parts of the infrared spectrum.
 
-The goal of this internship was to write software to guide the linear stage in the CRIMI in making measurements, design a graphical user interface for easy user access and do some data processing on the acquired data: fast Fourier transforms and windowing. As a result, I have written a program in Python that automatically takes a complete measurement with this spectrometer. The program takes scan length and stepsize, or equivalent resolution and maximum frequency, as input, and outputs the raw data in \verb!csv! format.
+The goal of this internship was to write software to guide the linear stage in the CRIMI to make measurements, design a graphical user interface for easy user access and do some data processing on the acquired data: fast Fourier transforms and windowing. As a result, I have written a program in Python that automatically takes a complete measurement with this spectrometer. The program takes scan length and stepsize, or equivalent resolution and maximum frequency, as input, and outputs the raw data in \verb!csv! format.
 
 %Doe hier ook een plaatje van een FTS (kun je van WIKIPEDIA halen). doel van je stage was:
 %aansturing van linear stage
@@ -41,6 +41,10 @@ with $i$ the unit imaginary number. However because all wavelengths produce cosi
 with $F(\tilde{\nu})$ the power of the source as a function of wavenumber or frequency, and $f(\delta)$ the power as a function of path length difference.
 
 Because of this Fourier transform and $\tilde{\nu} = \frac{1}{\delta}$, a longer path length for the measurement causes a higher resolution, and a smaller stepsize gives a higher highest frequency.
+
+In the software this computation is done by taking the fast Fourier transform, an algorithm which uses a list of equally spaced samples of some periodic function to compute the Fourier transform and its inverse. Therefore it is necessary to take measurements which are equally spaced, in this case in distance.
+
+These kind of algorithms assume that the measured range is an integer multiple of periods, which can never be achieved for broadband measurements. To compensate for the errors introduced by this assumption, a windowing or apodization function can be added. This function smoothes out the measurements to zero at the edges of the range, which minimizes these effects. There are different windowing functions, which can all be used after the measurements have been made and before the Fourier transform is done. In this program only the Hann apodization function has been added, as it is easy to include use other windowing functions on the saved interferogram data.
 
 \begin{figure}
  \begin{center}
