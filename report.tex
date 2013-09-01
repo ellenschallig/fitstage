@@ -6,30 +6,32 @@
 \usepackage[parfill]{parskip}
 \usepackage{graphicx, subfig}
 \usepackage{listings}
-\lstset{language=Python, breaklines=true}   
+\lstset{language=Python, breaklines=true, basicstyle=\ttfamily\small, showspaces=false, showstringspaces=false, }%breakatwhitespace=true}
 
 %\usepackage{natbib}
 \usepackage[style=numeric,natbib=true,sortcites=true,block=space]{biblatex}
 \bibliography{bibliography}
 
 \title{A Step-Integrate Program for the CRIMI}
-%\subtitle{, the Vacuum Fourier Transform Spectrometer}
 \author{Ellen Schallig}
 
 \begin{document}
  
 \maketitle
 
- \begin{abstract}
- For the `FIT-stage' (small internship) I have made software for a Fourier transform spectrometer. This is a stand-alone program which works with the step-integrate method: each step of the stage is followed by dwell time and a measurement, after which another step is taken. Some work has been done involving the fast scan method, however, most of this remains future work.
- \end{abstract}
-
+\newpage
+\tableofcontents
+\newpage
 \input{introduction}
 \input{stepintegrate}
 \input{gui}
 \input{improvements}
-%\input{codedescription}
+\input{conclusion}
+
 
 \printbibliography
+\appendix
+\input{code}
+\input{code_fastscan}
 
 \end{document}
